@@ -1,5 +1,15 @@
-﻿
+﻿@using TestProjectWeb.Models
+@model List<UserViewModel>
 
 <div>
-    User Info:
+    <div>   
+        All users:
+        @foreach (var user in Model)
+        {
+            <div> User: @user.Name </div>
+        }   
+    </div>    
+    <div>
+        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="CreateUser">Create user</a>
+    </div>
 </div>
