@@ -7,8 +7,8 @@ namespace TestProjectWeb.Controllers
 {
     public class UserController : Controller
     {
-        private readonly ApplicationDbContext _dbContext;
-        private readonly Repository _repository;
+        private ApplicationDbContext _dbContext;
+        private Repository _repository;
 
         public UserController(ApplicationDbContext dbContext, 
                               Repository repository)
@@ -24,6 +24,7 @@ namespace TestProjectWeb.Controllers
             foreach (var user in users)
             {
                 var userViewModel = new UserViewModel();
+                userViewModel.Id = user.Id;
                 userViewModel.Name = user.Name;
                 userViewModels.Add(userViewModel);
             }
@@ -43,10 +44,17 @@ namespace TestProjectWeb.Controllers
             {
                 Name = userViewModel.Name,
             };
-            _dbContext.Users.Add(user);
-            _dbContext.SaveChanges();
+            _repository.AddUser(user);
 
             return View();
+        }
+
+        public IActionResult DeleteUser(int id)
+        {
+            var user = _repository.GetById(id);
+            _repository.DeleteUser(user);
+            
+            return RedirectToAction("Index");
         }
 
     }
