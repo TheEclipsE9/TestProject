@@ -1,0 +1,20 @@
+﻿@model LoginViewModel
+
+<div class="login">
+    Login
+     <form method="post" asp-controller="User" asp-action="Login" asp-antiforgery="true">
+        <div>
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" />
+        </div>
+        <div>
+            <label asp-for="Password"></label>
+            <input type="text" asp-for="Password" />
+        </div>
+
+        <div>
+            <input type="submit" value="Login" />
+        </div>
+     </form>
+     <a asp-area="" asp-controller="User" asp-action="Index">Back</a>
+</div>
