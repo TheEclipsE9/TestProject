@@ -1,9 +1,9 @@
 ﻿namespace TestProjectWeb.Models
 {
-    public class UserViewModel
+    public class LoginViewModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
     }
 }
+

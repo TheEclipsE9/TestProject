@@ -1,21 +1,41 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using TestProjectWeb.Data;
+using TestProjectWeb.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<ApplicationDbContext>(diContainer => diContainer.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
+builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddScoped<Repository>(diContainer => new Repository(diContainer.GetService<ApplicationDbContext>()));
+builder.Services.AddDbContext<ApplicationDbContext>(diContainer => 
+    diContainer.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+        ));
 
+builder.Services.AddScoped<UserRepository>(diContainer => 
+    { 
+        var applicationDbContext = diContainer.GetService<ApplicationDbContext>();
+        var repository = new UserRepository(applicationDbContext);
+        return repository;
+    });
 
+builder.Services.AddScoped<UserService>(diContainer => 
+    new UserService(diContainer.GetService<UserRepository>(), 
+                    diContainer.GetService<IHttpContextAccessor>()
+)); 
+
+builder.Services.AddAuthentication("AuthCookie")
+    .AddCookie("AuthCookie", config => {
+        config.LoginPath = "/User/Login";
+        config.AccessDeniedPath = "/User/AccessDenied";
+        config.Cookie.Name = "userInfo";
+    });
 
 var app = builder.Build();
-
+ 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -29,7 +49,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthentication();//кто?
+app.UseAuthorization();//»меет ли право?
 
 app.MapControllerRoute(
     name: "default",
