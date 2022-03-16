@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TestProjectWeb.Data;
@@ -35,6 +36,7 @@ namespace TestProjectWeb.Controllers
             return View(userViewModels);
         }
 
+        [Authorize]
         public IActionResult Profile()
         {
             var user = _userService.GetCurrentUser();
@@ -75,6 +77,11 @@ namespace TestProjectWeb.Controllers
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             var user = _userRepository.GetByLogin(loginViewModel.Name, loginViewModel.Password);
+            
+            if (user == null)
+            {
+                return RedirectToAction("Register", "User");
+            }
 
             var claims = new List<Claim>();
 
@@ -88,7 +95,7 @@ namespace TestProjectWeb.Controllers
 
             await HttpContext.SignInAsync(principal);
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Logout()
@@ -96,24 +103,6 @@ namespace TestProjectWeb.Controllers
             await HttpContext.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
-        }
-
-        [HttpGet]
-        public IActionResult CreateUser()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult CreateUser(UserViewModel userViewModel)
-        {
-            User user = new User
-            {
-                Name = userViewModel.Name,
-            };
-            _userRepository.CreateUser(user);
-
-            return View();
         }
 
         public IActionResult DeleteUser(int id)
