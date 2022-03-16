@@ -2,8 +2,18 @@
 @model UserViewModel
 
 <div>
-    Current user:
-    Id: @Model.Id
-    Name: @Model.Name
-    Password: @Model.Password
+    Your profile:
+    <div>
+         Id: @Model.Id
+    </div>
+    <div>
+        Name: @Model.Name
+    </div>
+    <div>
+        Password: @Model.Password
+    </div>    
+</div>
+
+<div>
+    <a asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
 </div>
