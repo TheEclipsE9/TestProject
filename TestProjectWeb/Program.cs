@@ -21,6 +21,12 @@ builder.Services.AddScoped<UserRepository>(diContainer =>
         var repository = new UserRepository(applicationDbContext);
         return repository;
     });
+builder.Services.AddScoped<WordRepository>(diContainer =>
+{
+    var applicationDbContext = diContainer.GetService<ApplicationDbContext>();
+    var repository = new WordRepository(applicationDbContext);
+    return repository;
+});
 
 builder.Services.AddScoped<UserService>(diContainer => 
     new UserService(diContainer.GetService<UserRepository>(), 

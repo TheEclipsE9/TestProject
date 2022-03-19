@@ -11,15 +11,18 @@ namespace TestProjectWeb.Controllers
 {
     public class UserController : Controller
     {
+        private WordRepository _wordRepository;
         private UserRepository _userRepository;
         private UserService _userService;
 
         public UserController(ApplicationDbContext dbContext,
-                              UserRepository userRepository, 
-                              UserService userService)
+                              UserRepository userRepository,
+                              UserService userService, 
+                              WordRepository wordRepository)
         {
             _userRepository = userRepository;
             _userService = userService;
+            _wordRepository = wordRepository;
         }
 
         public IActionResult Index()
@@ -39,6 +42,8 @@ namespace TestProjectWeb.Controllers
         [Authorize]
         public IActionResult Profile()
         {
+            var profileViewModel = new ProfileViewModel();
+
             var user = _userService.GetCurrentUser();
             var userViewModel = new UserViewModel
             {
@@ -46,8 +51,25 @@ namespace TestProjectWeb.Controllers
                 Name = user.Name,
                 Password = user.Password,
             };
+
+
+            var wordViewModels = new List<WordViewModel>();
+
+            //var words = _wordRepository.GetAll();
+            var words = _wordRepository.GetAllByCreaterId(user.Id);
+            foreach (var word in words)
+            {
+                var wordViewModel = new WordViewModel();
+                wordViewModel.Value = word.Value;
+                wordViewModel.Translation = word.Translation;
+
+                wordViewModels.Add(wordViewModel);
+            }
+
+            profileViewModel.UserViewModel = userViewModel;
+            profileViewModel.WordViewModels = wordViewModels;
             
-            return View(userViewModel);
+            return View(profileViewModel);
         }
 
         [HttpGet]
