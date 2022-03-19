@@ -1,17 +1,30 @@
 ﻿@using TestProjectWeb.Models;
-@model UserViewModel
+@model ProfileViewModel
 
 <div>
     Your profile:
     <div>
-         Id: @Model.Id
+         Id: @Model.UserViewModel.Id
     </div>
     <div>
-        Name: @Model.Name
+        Name: @Model.UserViewModel.Name
     </div>
     <div>
-        Password: @Model.Password
+        Password: @Model.UserViewModel.Password
     </div>    
+</div>
+
+<div>
+    @foreach (var word in @Model.WordViewModels)
+    {
+        <div>
+            <span>Value: @word.Value     Translation: @word.Translation</span>
+        </div>        
+    }
+</div>
+
+<div>
+    <a asp-area="" asp-controller="Word" asp-action="CreateWord">CreateWord</a>
 </div>
 
 <div>
