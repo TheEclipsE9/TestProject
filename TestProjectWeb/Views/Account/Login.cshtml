@@ -1,21 +1,30 @@
 ﻿@model LoginViewModel
 
 <div class="login">
-    Login
-     <form method="post" asp-controller="Account" asp-action="Login" asp-antiforgery="true">
-        <div>
-            <label asp-for="Name"></label>
-            <input type="text" asp-for="Name" />
+    <div class="login-title">
+        Login
+    </div>
+    <form method="post" asp-controller="Account" asp-action="Login" asp-antiforgery="true">
+        <div class="login-fields">
+            <div>
+                <label asp-for="Name"></label>
+                <input type="text" asp-for="Name" />
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input type="text" asp-for="Password" />
+            </div>
         </div>
-        <div>
-            <label asp-for="Password"></label>
-            <input type="text" asp-for="Password" />
+        <div class="login-buttons">
+            <div>
+                <input type="submit" value="Login" />
+            </div>
+            <div>
+                OR
+            </div>
+            <div>
+                <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+            </div>
         </div>
-
-        <div>
-            <input type="submit" value="Login" />
-        </div>
-     </form>
-     <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-     <a asp-area="" asp-controller="Home" asp-action="Index">Back</a>
+    </form>
 </div>
