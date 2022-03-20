@@ -9,23 +9,22 @@ using TestProjectWeb.Services;
 
 namespace TestProjectWeb.Controllers
 {
-    public class UserController : Controller
+    public class AccountController : Controller
     {
         private WordRepository _wordRepository;
         private UserRepository _userRepository;
         private UserService _userService;
 
-        public UserController(ApplicationDbContext dbContext,
+        public AccountController(ApplicationDbContext dbContext,
                               UserRepository userRepository,
-                              UserService userService, 
+                              UserService userService,
                               WordRepository wordRepository)
         {
             _userRepository = userRepository;
             _userService = userService;
             _wordRepository = wordRepository;
         }
-
-        public IActionResult Index()
+        public IActionResult AllAccounts()
         {
             var users = _userRepository.GetAll();
             var userViewModels = new List<UserViewModel>();
@@ -37,39 +36,6 @@ namespace TestProjectWeb.Controllers
                 userViewModels.Add(userViewModel);
             }
             return View(userViewModels);
-        }
-
-        [Authorize]
-        public IActionResult Profile()
-        {
-            var profileViewModel = new ProfileViewModel();
-
-            var user = _userService.GetCurrentUser();
-            var userViewModel = new UserViewModel
-            {
-                Id = user.Id,
-                Name = user.Name,
-                Password = user.Password,
-            };
-
-
-            var wordViewModels = new List<WordViewModel>();
-
-            //var words = _wordRepository.GetAll();
-            var words = _wordRepository.GetAllByCreaterId(user.Id);
-            foreach (var word in words)
-            {
-                var wordViewModel = new WordViewModel();
-                wordViewModel.Value = word.Value;
-                wordViewModel.Translation = word.Translation;
-
-                wordViewModels.Add(wordViewModel);
-            }
-
-            profileViewModel.UserViewModel = userViewModel;
-            profileViewModel.WordViewModels = wordViewModels;
-            
-            return View(profileViewModel);
         }
 
         [HttpGet]
@@ -99,10 +65,10 @@ namespace TestProjectWeb.Controllers
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             var user = _userRepository.GetByLogin(loginViewModel.Name, loginViewModel.Password);
-            
+
             if (user == null)
             {
-                return RedirectToAction("Register", "User");
+                return RedirectToAction("Register", "Account");
             }
 
             var claims = new List<Claim>();
@@ -127,13 +93,12 @@ namespace TestProjectWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult DeleteUser(int id)
+        public IActionResult DeleteAccount(int id)
         {
             var user = _userRepository.GetById(id);
             _userRepository.DeleteUser(user);
-            
-            return RedirectToAction("Index");
-        }
 
+            return RedirectToAction("AllAccounts");
+        }
     }
 }
