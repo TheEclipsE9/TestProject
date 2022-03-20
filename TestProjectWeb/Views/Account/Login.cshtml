@@ -2,7 +2,7 @@
 
 <div class="login">
     Login
-     <form method="post" asp-controller="User" asp-action="Login" asp-antiforgery="true">
+     <form method="post" asp-controller="Account" asp-action="Login" asp-antiforgery="true">
         <div>
             <label asp-for="Name"></label>
             <input type="text" asp-for="Name" />
@@ -16,6 +16,6 @@
             <input type="submit" value="Login" />
         </div>
      </form>
-     <a asp-area="" asp-controller="User" asp-action="Register">Register</a>
+     <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
      <a asp-area="" asp-controller="Home" asp-action="Index">Back</a>
 </div>
