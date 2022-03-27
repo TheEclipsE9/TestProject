@@ -47,6 +47,8 @@ namespace TestProjectWeb.Controllers
                 var wordViewModel = new WordViewModel();
                 wordViewModel.Value = word.Value;
                 wordViewModel.Translation = word.Translation;
+                wordViewModel.Category = word.Category;
+                wordViewModel.PartOfSpeech = word.PartOfSpeech;
 
                 wordViewModels.Add(wordViewModel);
             }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestProjectWeb.Data;
 
@@ -10,9 +11,10 @@ using TestProjectWeb.Data;
 namespace TestProjectWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220327152249_WordsAddCategoryPartOfSpeech")]
+    partial class WordsAddCategoryPartOfSpeech
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,8 +59,9 @@ namespace TestProjectWeb.Migrations
                     b.Property<int>("CreaterId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PartOfSpeech")
-                        .HasColumnType("int");
+                    b.Property<string>("PartOfSpeech")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Translation")
                         .IsRequired()
