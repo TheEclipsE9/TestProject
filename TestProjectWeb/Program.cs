@@ -35,8 +35,8 @@ builder.Services.AddScoped<UserService>(diContainer =>
 
 builder.Services.AddAuthentication("AuthCookie")
     .AddCookie("AuthCookie", config => {
-        config.LoginPath = "/User/Login";
-        config.AccessDeniedPath = "/User/AccessDenied";
+        config.LoginPath = "/Account/Login";
+        config.AccessDeniedPath = "/Account/AccessDenied";
         config.Cookie.Name = "userInfo";
     });
 

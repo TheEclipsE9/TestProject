@@ -6,12 +6,12 @@ using TestProjectWeb.Services;
 
 namespace TestProjectWeb.Controllers
 {
-    public class WordController : Controller
+    public class VocabularyController : Controller
     {
         private WordRepository _wordRepository;
         private UserService _userService;
 
-        public WordController(WordRepository wordRepository,
+        public VocabularyController(WordRepository wordRepository,
                               UserService userService)
         {
             _wordRepository = wordRepository;
@@ -31,8 +31,10 @@ namespace TestProjectWeb.Controllers
             var user = _userService.GetCurrentUser();
 
             var word = new Word();
-            word.Value = wordViewModel.Value;
-            word.Translation = wordViewModel.Translation;
+            word.Value = wordViewModel.Value.ToLower();
+            word.Translation = wordViewModel.Translation.ToLower();
+            word.Category = wordViewModel.Category.ToLower();
+            word.PartOfSpeech = wordViewModel.PartOfSpeech;
             word.Creater = user;
 
             _wordRepository.CreateWord(word);

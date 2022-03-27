@@ -22,7 +22,10 @@
 .profile-content-sort{
 
 }
+.profile-content-table {
+    
+}
 .profile-content-table-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
