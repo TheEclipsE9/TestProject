@@ -20,6 +20,11 @@ namespace TestProjectWeb.Data
         {
             return _dbContext.Words.Where( x => x.Creater.Id == id).ToList();
         }
+        public Word GetById(int id)
+        {
+            return _dbContext.Words.Where(word => word.Id == id).FirstOrDefault();
+        }
+
         public void CreateWord(Word word)
         {
             _dbContext.Words.Add(word);
@@ -29,6 +34,11 @@ namespace TestProjectWeb.Data
         public void DeleteWord(Word word)
         {
             _dbContext.Words.Remove(word);
+            _dbContext.SaveChanges();
+        }
+        public void EditWord(Word word)
+        {
+            _dbContext.Words.Update(word);
             _dbContext.SaveChanges();
         }
     }

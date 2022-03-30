@@ -1,0 +1,29 @@
+﻿@model WordViewModel
+@using TestProjectWeb.Data.Enums
+
+<div>
+    Register
+    <form method="post" asp-controller="Word" asp-action="CreateWord" asp-antiforgery="true">
+        <div>
+            <label asp-for="Value"></label>
+            <input type="text" asp-for="Value" />
+        </div>
+        <div>
+            <label asp-for="Translation"></label>
+            <input type="text" asp-for="Translation" />
+        </div>
+        <div>
+            <label asp-for="Category"></label>
+            <input type="text" asp-for="Category" />
+        </div>
+        <div>
+            <label asp-for="PartOfSpeech"></label>
+            <select asp-for="PartOfSpeech" asp-items="Html.GetEnumSelectList<PartsOfSpeech>()">
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Create" />
+        </div>
+    </form>
+    <a asp-area="" asp-controller="Profile" asp-action="Profile">Back</a>
+</div>
