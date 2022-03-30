@@ -19,7 +19,7 @@
         </div>
         <div class="profile-side-links">
             <div>
-                <a asp-area="" asp-controller="Vocabulary" asp-action="CreateWord">CreateWord</a>
+                <a asp-area="" asp-controller="Word" asp-action="CreateWord">CreateWord</a>
 
             </div>
             <div>
@@ -50,6 +50,8 @@
                 {
                     <div class="profile-content-table-row-item">
                         @word.Value
+                        <a asp-controller="Word" asp-action="DeleteWord" asp-route-id="@word.Id">D</a>
+                        <a asp-controller="Word" asp-action="EditWord" asp-route-id="@word.Id">E</a>                        
                     </div>
                     <div class="profile-content-table-row-item">
                         @word.Translation

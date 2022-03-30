@@ -9,6 +9,7 @@ using TestProjectWeb.Services;
 
 namespace TestProjectWeb.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private WordRepository _wordRepository;
@@ -24,8 +25,7 @@ namespace TestProjectWeb.Controllers
             _userService = userService;
             _wordRepository = wordRepository;
         }
-
-        [Authorize]
+        
         public IActionResult Profile()
         {
             var profileViewModel = new ProfileViewModel();
@@ -45,6 +45,7 @@ namespace TestProjectWeb.Controllers
             foreach (var word in words)
             {
                 var wordViewModel = new WordViewModel();
+                wordViewModel.Id = word.Id;
                 wordViewModel.Value = word.Value;
                 wordViewModel.Translation = word.Translation;
                 wordViewModel.Category = word.Category;

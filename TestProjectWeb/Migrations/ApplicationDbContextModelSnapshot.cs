@@ -39,7 +39,7 @@ namespace TestProjectWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("TestProjectWeb.Data.DbModels.Word", b =>
@@ -72,7 +72,7 @@ namespace TestProjectWeb.Migrations
 
                     b.HasIndex("CreaterId");
 
-                    b.ToTable("Words");
+                    b.ToTable("Words", (string)null);
                 });
 
             modelBuilder.Entity("TestProjectWeb.Data.DbModels.Word", b =>

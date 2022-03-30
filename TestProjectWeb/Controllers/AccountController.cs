@@ -46,6 +46,10 @@ namespace TestProjectWeb.Controllers
         [HttpPost]
         public IActionResult Register(RegisterViewModel registrationViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var newUser = new User
             {
                 Name = registrationViewModel.Name,
@@ -93,8 +97,9 @@ namespace TestProjectWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult DeleteAccount(int id)
+        public async Task<IActionResult> DeleteAccount(int id)
         {
+            await HttpContext.SignOutAsync();
             var user = _userRepository.GetById(id);
             _userRepository.DeleteUser(user);
 
