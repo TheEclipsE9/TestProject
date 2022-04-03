@@ -1,21 +1,31 @@
 ﻿@model RegisterViewModel
 
-<div class="register">
-    <div class="register-title">
+<div>
+    <div>
         Register
     </div>
     <form method="post" asp-controller="Account" asp-action="Register" asp-antiforgery="true">
-        <div class="register-fields">
+        <div>
             <div>
-                <label asp-for="Name"></label>
-                <input type="text" asp-for="Name" />
+                <div>
+                    <label asp-for="Name"></label>
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div>
+                    <input type="text" asp-for="Name" />
+                </div>
             </div>
             <div>
-                <label asp-for="Password"></label>
-                <input type="text" asp-for="Password" />
+                <div>
+                    <label asp-for="Password"></label>
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div>
+                    <input type="password" asp-for="Password" />
+                </div>
             </div>
         </div>
-        <div class="register-buttons">
+        <div>
             <div>
                 <input type="submit" value="Register" />
             </div>

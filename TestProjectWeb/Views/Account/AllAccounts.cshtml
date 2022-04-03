@@ -1,16 +1,16 @@
 ﻿@using TestProjectWeb.Models
 @model List<UserViewModel>
 
-<div class="user-index-container">
-    <div class="user-index-title">
+<div>
+    <div>
         All users:
     </div>
-    <div class="user-index-list">          
+    <div>          
         @foreach (var user in Model)
         {
-            <div class="user-index-list-item"> 
-                <span class="user-index-list-item-name"> User: @user.Name </span>
-                <a class="user-index-list-item-link" asp-area="" asp-controller="Account" asp-action="DeleteAccount" asp-route-id="@user.Id">Delete</a>
+            <div> 
+                <span> User: @user.Name </span>
+                <a asp-area="" asp-controller="Account" asp-action="DeleteAccount" asp-route-id="@user.Id">Delete</a>
             </div>
         }   
     </div>  

@@ -7,13 +7,9 @@ namespace TestProjectWeb.Data.DbModels
     {
         [Key]
         public int Id { get; set; }
-        [Required]
         public string Value { get; set; }
-        [Required]
         public string Translation { get; set; }
-        [Required]
         public string Category { get; set; }
-        [Required]
         public PartsOfSpeech PartOfSpeech { get; set; }
 
         public virtual User Creater { get; set; }
