@@ -46,6 +46,11 @@ namespace TestProjectWeb.Controllers
         [HttpPost]
         public IActionResult Register(RegisterViewModel registrationViewModel)
         {
+            if(_userRepository.GetAll().Any(x=> x.Name == registrationViewModel.Name))
+            {
+                ModelState.AddModelError("Name", "Name is already taken");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View();
@@ -68,11 +73,25 @@ namespace TestProjectWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
+            if (_userRepository.GetAll().Any(x => x.Name == loginViewModel.Name) is false)
+            {
+                ModelState.AddModelError("Name", "Account is not created");
+            }
+            if (_userRepository.GetAll().Any(x => x.Name == loginViewModel.Name && x.Password != loginViewModel.Password))
+            {
+                ModelState.AddModelError("Password", "Password is not correct");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             var user = _userRepository.GetByLogin(loginViewModel.Name, loginViewModel.Password);
 
             if (user == null)
             {
-                return RedirectToAction("Register", "Account");
+                return View();
             }
 
             var claims = new List<Claim>();
