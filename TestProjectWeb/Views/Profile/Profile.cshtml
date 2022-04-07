@@ -1,5 +1,8 @@
 ﻿@using TestProjectWeb.Models;
 @model ProfileViewModel
+@section Scripts{
+<link rel="stylesheet" href="~/css/profileProfile.css">
+}
 
 <div class="profile">
     <div class="profile-side">
@@ -22,48 +25,76 @@
                 <a asp-area="" asp-controller="Word" asp-action="CreateWord">CreateWord</a>
 
             </div>
-            <div>
-                <a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-            </div>
         </div>
     </div>
     <div class="profile-content">
         <div class="profile-content-search">
-            Search:
+            <span>
+                Search:
+                <input type="search"/>
+            </span>            
+            <select>
+                <option value="1">Word</option>
+                <option value="2">Translation</option>
+                <option value="3">Category</option>
+                <option value="4">Part of Speech</option>
+            </select>
         </div>
         <div class="profile-content-table">
             <div class="profile-content-table-row">
-                <div class="profile-content-table-row-item">
-                    Word
-                </div>
-                <div class="profile-content-table-row-item">
-                    Translation
-                </div>
-                <div class="profile-content-table-row-item">
-                    Category
-                </div>
-                <div class="profile-content-table-row-item">
-                    PartOfSpeech
-                </div>
-
-                @foreach (var word in @Model.WordViewModels)
-                {
-                    <div class="profile-content-table-row-item">
-                        @word.Value
-                        <a asp-controller="Word" asp-action="DeleteWord" asp-route-id="@word.Id">D</a>
-                        <a asp-controller="Word" asp-action="EditWord" asp-route-id="@word.Id">E</a>                        
+                <div class="profile-content-table-row-item-title">
+                    <div>
+                        Word
                     </div>
-                    <div class="profile-content-table-row-item">
-                        @word.Translation
+                </div>
+                <div class="profile-content-table-row-item-title">
+                    <div>
+                        Translation
                     </div>
-                    <div class="profile-content-table-row-item">
-                        @word.Category
+                </div>
+                <div class="profile-content-table-row-item-title">
+                    <div>
+                        Category
                     </div>
-                    <div class="profile-content-table-row-item">
-                        @word.PartOfSpeech
+                </div>
+                <div class="profile-content-table-row-item-title">
+                    <div>
+                        Part of Speech
                     </div>
-                }
+                </div>
             </div>
+            @foreach (var word in @Model.WordViewModels)
+            {
+                <div class="profile-content-table-row">
+                    <div class="profile-content-table-row-item">
+                        <div>
+                            <span>
+                                @word.Value
+                            </span>
+                            <span>
+                                <a asp-controller="Word" asp-action="EditWord" asp-route-id="@word.Id">E</a>
+                                <a asp-controller="Word" asp-action="DeleteWord" asp-route-id="@word.Id">D</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="profile-content-table-row-item">
+                        <div>
+                            @word.Translation
+                        </div>
+                    </div>
+                    <div class="profile-content-table-row-item">
+                        <div>
+                            @word.Category
+                        </div>
+                    </div>
+                    <div class="profile-content-table-row-item">
+                        <div>
+                            @word.PartOfSpeech
+                        </div>
+                    </div>
+                </div>
+            }
+
         </div>
     </div>
 </div>

@@ -1,0 +1,43 @@
+.profile {
+    margin: 0 15px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.profile-content {
+}
+
+.profile-content-search {
+    margin: 0 0 3px 0;
+    padding: 1px 1px 1px 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-content-table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.profile-content-table-row-item-title {
+    color: azure;
+    background-color: #336e85;
+    border: 1px solid black;
+}
+
+.profile-content-table-row-item {
+    background-color: #4fbbe5;
+    border: 1px solid black;
+}
+
+    .profile-content-table-row-item div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .profile-content-table-row-item a {
+        color: azure;
+    }
