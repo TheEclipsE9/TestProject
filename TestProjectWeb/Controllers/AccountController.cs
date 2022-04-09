@@ -24,19 +24,6 @@ namespace TestProjectWeb.Controllers
             _userService = userService;
             _wordRepository = wordRepository;
         }
-        public IActionResult AllAccounts()
-        {
-            var users = _userRepository.GetAll();
-            var userViewModels = new List<UserViewModel>();
-            foreach (var user in users)
-            {
-                var userViewModel = new UserViewModel();
-                userViewModel.Id = user.Id;
-                userViewModel.Name = user.Name;
-                userViewModels.Add(userViewModel);
-            }
-            return View(userViewModels);
-        }
 
         [HttpGet]
         public IActionResult Register()

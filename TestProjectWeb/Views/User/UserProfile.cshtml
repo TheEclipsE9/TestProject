@@ -16,31 +16,6 @@
             <div>
                 Name: @Model.UserViewModel.Name
             </div>
-            <div>
-                Password: @Model.UserViewModel.Password
-            </div>
-        </div>
-        <div class="profile-side-links">
-            <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Options</a>
-            </div>            
-            <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Delete account</a>
-            </div>
-        </div>
-        <div class="profile-side-actions">
-            <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Random word</a>
-            </div>
-            <div>
-                <a asp-area="" asp-controller="Word" asp-action="CreateWord">Create word</a>
-            </div>
-            <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Random trenning</a>
-            </div>
-            <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Create quiz</a>
-            </div>
         </div>
     </div>
     <div class="profile-content">
@@ -79,8 +54,17 @@
                                 @word.Value
                             </span>
                             <span>
-                                <a asp-controller="Word" asp-action="EditWord" asp-route-id="@word.Id">E</a>
-                                <a asp-controller="Word" asp-action="DeleteWord" asp-route-id="@word.Id">D</a>
+                                @{
+                                    var parms = new Dictionary<string, string>
+                                        {
+                                            { "createrId", @word.CreaterId.ToString() },
+                                            { "value", @word.Value },
+                                            {"translation", @word.Translation },
+                                            {"category", @word.Category },
+                                            {"partOfSpeech", @word.PartOfSpeech.ToString() }
+                                        };
+                                }
+                                <a asp-controller="Word" asp-action="CopyWord" asp-all-route-data="parms">C</a>
                             </span>
                         </div>
                     </div>
