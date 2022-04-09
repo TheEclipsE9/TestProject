@@ -9,8 +9,7 @@
         @foreach (var user in Model)
         {
             <div> 
-                <span> User: @user.Name </span>
-                <a asp-area="" asp-controller="Account" asp-action="DeleteAccount" asp-route-id="@user.Id">Delete</a>
+                <a asp-controller="User" asp-action="UserProfile" asp-route-id="@user.Id">@user.Name</a>
             </div>
         }   
     </div>  

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TestProjectWeb.Data;
 using TestProjectWeb.Data.DbModels;
+using TestProjectWeb.Data.Enums;
 using TestProjectWeb.Models;
 using TestProjectWeb.Services;
 
@@ -86,6 +87,22 @@ namespace TestProjectWeb.Controllers
             _wordRepository.DeleteWord(word);
 
             return RedirectToAction("Profile", "Profile");
+        }
+
+        public IActionResult CopyWord(int createrId, string value, string translation, string category, PartsOfSpeech partOfSpeech)
+        {
+            var user = _userService.GetCurrentUser();
+
+            var word = new Word();
+            word.Value = value;
+            word.Translation = translation;
+            word.Category = category;
+            word.PartOfSpeech = partOfSpeech;
+            word.Creater = user;
+
+            _wordRepository.CreateWord(word);
+
+            return RedirectToAction("UserProfile", "User", new {@id = createrId});
         }
     }
 }

@@ -14,5 +14,7 @@ namespace TestProjectWeb.Models
         public string Category { get; set; }
         [Required]
         public PartsOfSpeech PartOfSpeech { get; set; }
+
+        public int CreaterId { get; set; }
     }
 }
