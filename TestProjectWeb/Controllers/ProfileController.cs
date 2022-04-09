@@ -35,7 +35,10 @@ namespace TestProjectWeb.Controllers
             {
                 Id = user.Id,
                 Name = user.Name,
-                Password = user.Password,
+                Country = user.Country,
+                City = user.City,
+                LearningLanguage = user.LearningLanguage,
+                LanguageLevel = user.LanguageLevel,
             };
 
 

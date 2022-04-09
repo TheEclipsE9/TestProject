@@ -1,4 +1,5 @@
-﻿@model RegisterViewModel
+﻿@using TestProjectWeb.Data.Enums
+@model RegisterViewModel
 
 <div>
     <div>
@@ -13,6 +14,50 @@
                 </div>
                 <div>
                     <input type="text" asp-for="Name" />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label asp-for="Country"></label>
+                    <span asp-validation-for="Country"></span>
+                </div>
+                <div>
+                    <input type="text" asp-for="Country" />
+                </div>
+            </div>            
+            <div>
+                <div>
+                    <label asp-for="City"></label>
+                    <span asp-validation-for="City"></span>
+                </div>
+                <div>
+                    <input type="text" asp-for="City" />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label asp-for="LearningLanguage"></label>
+                    <span asp-validation-for="LearningLanguage"></span>
+                </div>
+                <div>
+                    <input type="text" asp-for="LearningLanguage" />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label asp-for="LanguageLevel"></label>
+                </div>
+                <div>
+                    <select asp-for="LanguageLevel" asp-items="Html.GetEnumSelectList<LanguageLevel>()"></select>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label asp-for="Login"></label>
+                    <span asp-validation-for="Login"></span>
+                </div>
+                <div>
+                    <input type="text" asp-for="Login" />
                 </div>
             </div>
             <div>

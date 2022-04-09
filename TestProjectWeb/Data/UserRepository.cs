@@ -16,9 +16,9 @@ namespace TestProjectWeb.Data
             return _dbContext.Users.ToList();
         }
 
-        public User GetByLogin(string name, string password)
+        public User GetByLogin(string login, string password)
         {
-            return _dbContext.Users.SingleOrDefault(user => user.Name == name && user.Password == password);
+            return _dbContext.Users.SingleOrDefault(user => user.Login == login && user.Password == password);
         }
 
         public User GetById(int id)

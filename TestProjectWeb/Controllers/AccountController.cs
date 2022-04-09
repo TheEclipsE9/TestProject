@@ -33,9 +33,14 @@ namespace TestProjectWeb.Controllers
         [HttpPost]
         public IActionResult Register(RegisterViewModel registrationViewModel)
         {
-            if(_userRepository.GetAll().Any(x=> x.Name == registrationViewModel.Name))
+            if(_userRepository.GetAll().Any(x=> x.Login == registrationViewModel.Login))
             {
-                ModelState.AddModelError("Name", "Name is already taken");
+                ModelState.AddModelError("Login", "Login is already taken");
+            }
+            if (registrationViewModel.Login == registrationViewModel.Password)
+            {
+                ModelState.AddModelError("Login", "Login cannot be the same as password");
+                ModelState.AddModelError("Password", "Password cannot be the same as login");
             }
 
             if (!ModelState.IsValid)
@@ -45,6 +50,12 @@ namespace TestProjectWeb.Controllers
             var newUser = new User
             {
                 Name = registrationViewModel.Name,
+                Country = registrationViewModel.Country,
+                City = registrationViewModel.City,
+                LearningLanguage = registrationViewModel.LearningLanguage,
+                LanguageLevel = registrationViewModel.LanguageLevel,
+
+                Login = registrationViewModel.Login,
                 Password = registrationViewModel.Password,
             };
             _userRepository.CreateUser(newUser);
@@ -60,11 +71,11 @@ namespace TestProjectWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            if (_userRepository.GetAll().Any(x => x.Name == loginViewModel.Name) is false)
+            if (_userRepository.GetAll().Any(x => x.Login == loginViewModel.Login) is false)
             {
-                ModelState.AddModelError("Name", "Account is not created");
+                ModelState.AddModelError("Login", "Login is not correct or Account is not created");
             }
-            if (_userRepository.GetAll().Any(x => x.Name == loginViewModel.Name && x.Password != loginViewModel.Password))
+            if (_userRepository.GetAll().Any(x => x.Login == loginViewModel.Login && x.Password != loginViewModel.Password))
             {
                 ModelState.AddModelError("Password", "Password is not correct");
             }
@@ -74,7 +85,7 @@ namespace TestProjectWeb.Controllers
                 return View();
             }
 
-            var user = _userRepository.GetByLogin(loginViewModel.Name, loginViewModel.Password);
+            var user = _userRepository.GetByLogin(loginViewModel.Login, loginViewModel.Password);
 
             if (user == null)
             {
