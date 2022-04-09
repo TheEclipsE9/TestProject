@@ -106,7 +106,7 @@ namespace TestProjectWeb.Controllers
 
             await HttpContext.SignInAsync(principal);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Profile", "Profile");
         }
 
         public async Task<IActionResult> Logout()
