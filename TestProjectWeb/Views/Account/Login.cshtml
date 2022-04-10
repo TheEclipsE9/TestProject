@@ -1,40 +1,42 @@
 ﻿@model LoginViewModel
 
-<div>
-    <div>
-        Login
+<div class="account">
+    <div class="account-fields">
+        <div class="account-fields-title">
+            Login
+        </div>
+        <form method="post" asp-controller="Account" asp-action="Login" asp-antiforgery="true">
+            <div>
+                <div>
+                    <div>
+                        <label asp-for="Login"></label>
+                        <span asp-validation-for="Login"></span>
+                    </div>
+                    <div>
+                        <input type="text" asp-for="Login" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label asp-for="Password"></label>
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <div>
+                        <input type="password" asp-for="Password" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <input type="submit" value="Login" />
+                </div>
+                <div>
+                    OR
+                </div>
+                <div>
+                    <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                </div>
+            </div>
+        </form>
     </div>
-    <form method="post" asp-controller="Account" asp-action="Login" asp-antiforgery="true">
-        <div>
-            <div>
-                <div>
-                    <label asp-for="Login"></label>
-                    <span asp-validation-for="Login"></span>
-                </div>
-                <div>
-                    <input type="text" asp-for="Login" />
-                </div>                
-            </div>
-            <div>
-                <div>
-                    <label asp-for="Password"></label>
-                    <span asp-validation-for="Password"></span>
-                </div>
-                <div>
-                    <input type="password" asp-for="Password" />
-                </div>              
-            </div>
-        </div>
-        <div>
-            <div>
-                <input type="submit" value="Login" />
-            </div>
-            <div>
-                OR
-            </div>
-            <div>
-                <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-            </div>
-        </div>
-    </form>
 </div>

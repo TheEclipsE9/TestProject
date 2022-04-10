@@ -9,4 +9,15 @@
         console.log("close!")
         $('.profile-options').hide();
     });
+
+    $('.link-deleteAccount-open').click(function () {
+        console.log("show!")
+        $('.delete-account').show();
+    });
+    $('.link-deleteAccount-close').click(function () {
+        console.log("close!")
+        $('.delete-account').hide();
+    });
+
+
 });

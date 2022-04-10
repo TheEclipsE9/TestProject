@@ -1,8 +1,24 @@
-.title{
-    text-align: center;
+.index {
+    display: grid;
+    grid-template-columns: minmax(100px, 0.5fr);
+    justify-content: center;
 }
-.content {
+.index-title {
+    font-size: 30px;
+    color: azure;
+    text-align: center;
+    background-color: #336e85;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.index-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 0 15px;
+    grid-gap: 10px;
+    background-color: #4fbbe5;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.index-content div {
+    margin-top: 10px;
 }

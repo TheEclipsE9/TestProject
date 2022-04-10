@@ -1,48 +1,52 @@
 ﻿@model WordViewModel
 @using TestProjectWeb.Data.Enums
 
-<div>
-    Register
-    <form method="post" asp-controller="Word" asp-action="EditWord" asp-antiforgery="true">
-        <div>
-            <div>
-                <label asp-for="Value"></label>
-                <span asp-validation-for="Value"></span>
-            </div>
-            <div>
-                <input type="text" asp-for="Value" />
-            </div>
+<div class="account">
+    <div class="account-fields">
+        <div class="account-fields-title">
+            Edit
         </div>
-        <div>
+        <form method="post" asp-controller="Word" asp-action="EditWord" asp-antiforgery="true">
             <div>
-                <label asp-for="Translation"></label>
-                <span asp-validation-for="Translation"></span>
+                <div>
+                    <label asp-for="Value"></label>
+                    <span asp-validation-for="Value"></span>
+                </div>
+                <div>
+                    <input type="text" asp-for="Value" />
+                </div>
             </div>
             <div>
-                <input type="text" asp-for="Translation" />
-            </div>
-        </div>
-        <div>
-            <div>
-                <label asp-for="Category"></label>
-                <span asp-validation-for="Category"></span>
-            </div>
-            <div>
-                <input type="text" asp-for="Category" />
-            </div>
-        </div>
-        <div>
-            <div>
-                <label asp-for="PartOfSpeech"></label>
+                <div>
+                    <label asp-for="Translation"></label>
+                    <span asp-validation-for="Translation"></span>
+                </div>
+                <div>
+                    <input type="text" asp-for="Translation" />
+                </div>
             </div>
             <div>
-                <select asp-for="PartOfSpeech" asp-items="Html.GetEnumSelectList<PartsOfSpeech>()">
-                </select>
+                <div>
+                    <label asp-for="Category"></label>
+                    <span asp-validation-for="Category"></span>
+                </div>
+                <div>
+                    <input type="text" asp-for="Category" />
+                </div>
             </div>
-        </div>
-        <div>
-            <input type="submit" value="Edit" />
-        </div>
-    </form>
-    <a asp-area="" asp-controller="Profile" asp-action="Profile">Back</a>
+            <div>
+                <div>
+                    <label asp-for="PartOfSpeech"></label>
+                </div>
+                <div>
+                    <select asp-for="PartOfSpeech" asp-items="Html.GetEnumSelectList<PartsOfSpeech>()">
+                    </select>
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="Edit" />
+            </div>
+        </form>
+        <a asp-area="" asp-controller="Profile" asp-action="Profile">Back</a>
+    </div>
 </div>

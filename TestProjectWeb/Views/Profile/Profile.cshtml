@@ -35,7 +35,7 @@
                 <a class="link-options-open" href="#">Options</a>
             </div>
             <div>
-                <a asp-area="" asp-controller="Account" asp-action="DeleteAccount" asp-route-id="@Model.UserViewModel.Id">Delete account</a>
+                <a class="link-deleteAccount-open" href="#">Delete account</a>
             </div>
         </div>
         <div class="profile-side-actions">
@@ -120,7 +120,7 @@
 <div class="profile-options">
     <div class="profile-options-window">
         <div class="profile-options-header">
-            <a href="#" class="link-options-close">Close</a>
+            <div class="link-options-close">Close</div>
         </div>
         <div class="profile-options-fields">
             <form method="post" asp-controller="Profile" asp-action="EditProfile" asp-antiforgery="true">
@@ -134,6 +134,20 @@
                     <input type="submit" value="Change" />
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div class="delete-account">
+    <div class="delete-account-window">
+        <div>
+            Are you sure to delete your account?
+        </div>
+        <div>
+            <a asp-area="" asp-controller="Account" asp-action="DeleteAccount" asp-route-id="@Model.UserViewModel.Id">Yes</a>
+        </div>
+        <div class="link-deleteAccount-close">
+            No
         </div>
     </div>
 </div>
