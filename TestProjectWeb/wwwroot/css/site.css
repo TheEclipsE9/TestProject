@@ -26,9 +26,37 @@ header {
     background-color: #336e85;
 }
 
-    header a {
-        color: azure;
-    }
+a {
+    color: azure;
+    text-decoration: none;
+}
+
+input[type=submit] {
+    background-color: #336e85;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    margin-top: 5px;
+    text-align: center;
+}
+
+input[type=text] {
+    background-color: azure;
+    border-radius: 10px;
+    border: none;
+}
+
+input[type=password] {
+    background-color: azure;
+    border-radius: 10px;
+    border: none;
+}
+
+select {
+    background-color: azure;
+    border-radius: 10px;
+    border: none;
+}
 
 .navbar {
     display: flex;
@@ -44,5 +72,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 50px
+    height: 50px;
+    background-color: #336e85;
+    color: azure;
 }

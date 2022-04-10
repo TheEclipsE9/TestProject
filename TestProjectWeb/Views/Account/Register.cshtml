@@ -1,82 +1,85 @@
 ﻿@using TestProjectWeb.Data.Enums
 @model RegisterViewModel
 
-<div>
-    <div>
-        Register
+
+<div class="account">
+    <div class="account-fields">
+        <div class="account-fields-title">
+            Register
+        </div>
+        <form method="post" asp-controller="Account" asp-action="Register" asp-antiforgery="true">
+            <div>
+                <div>
+                    <div>
+                        <label asp-for="Name"></label>
+                        <span asp-validation-for="Name"></span>
+                    </div>
+                    <div>
+                        <input type="text" asp-for="Name" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label asp-for="Country"></label>
+                        <span asp-validation-for="Country"></span>
+                    </div>
+                    <div>
+                        <input type="text" asp-for="Country" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label asp-for="City"></label>
+                        <span asp-validation-for="City"></span>
+                    </div>
+                    <div>
+                        <input type="text" asp-for="City" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label asp-for="LearningLanguage"></label>
+                        <span asp-validation-for="LearningLanguage"></span>
+                    </div>
+                    <div>
+                        <input type="text" asp-for="LearningLanguage" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label asp-for="LanguageLevel"></label>
+                    </div>
+                    <div>
+                        <select asp-for="LanguageLevel" asp-items="Html.GetEnumSelectList<LanguageLevel>()"></select>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label asp-for="Login"></label>
+                        <span asp-validation-for="Login"></span>
+                    </div>
+                    <div>
+                        <input type="text" asp-for="Login" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label asp-for="Password"></label>
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <div>
+                        <input type="password" asp-for="Password" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <input type="submit" value="Register" />
+                </div>
+                <div>
+                    <a asp-area="" asp-controller="Account" asp-action="Login">Back</a>
+                </div>
+            </div>
+        </form>
     </div>
-    <form method="post" asp-controller="Account" asp-action="Register" asp-antiforgery="true">
-        <div>
-            <div>
-                <div>
-                    <label asp-for="Name"></label>
-                    <span asp-validation-for="Name"></span>
-                </div>
-                <div>
-                    <input type="text" asp-for="Name" />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label asp-for="Country"></label>
-                    <span asp-validation-for="Country"></span>
-                </div>
-                <div>
-                    <input type="text" asp-for="Country" />
-                </div>
-            </div>            
-            <div>
-                <div>
-                    <label asp-for="City"></label>
-                    <span asp-validation-for="City"></span>
-                </div>
-                <div>
-                    <input type="text" asp-for="City" />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label asp-for="LearningLanguage"></label>
-                    <span asp-validation-for="LearningLanguage"></span>
-                </div>
-                <div>
-                    <input type="text" asp-for="LearningLanguage" />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label asp-for="LanguageLevel"></label>
-                </div>
-                <div>
-                    <select asp-for="LanguageLevel" asp-items="Html.GetEnumSelectList<LanguageLevel>()"></select>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label asp-for="Login"></label>
-                    <span asp-validation-for="Login"></span>
-                </div>
-                <div>
-                    <input type="text" asp-for="Login" />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label asp-for="Password"></label>
-                    <span asp-validation-for="Password"></span>
-                </div>
-                <div>
-                    <input type="password" asp-for="Password" />
-                </div>
-            </div>
-        </div>
-        <div>
-            <div>
-                <input type="submit" value="Register" />
-            </div>
-            <div>
-                <a asp-area="" asp-controller="Account" asp-action="Login">Back</a>
-            </div>
-        </div>
-    </form>
 </div>

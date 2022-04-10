@@ -1,0 +1,14 @@
+.account {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.account-fields {
+    padding-left: 10px;
+    background-color: #4fbbe5;
+    border-radius: 10px;
+}
+.account-fields-title {
+    font-size: 20px;
+    text-align: center;
+}
