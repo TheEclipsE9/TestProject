@@ -22,6 +22,7 @@
 .profile-side-info {
     margin-left: 10px;
 }
+
 .profile-side-actions {
     grid-row: 1/2;
     grid-column: 2/3;
@@ -70,3 +71,37 @@
     .profile-content-table-row-item a {
         color: azure;
     }
+
+.profile-options {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: #00000026;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-options-window {
+
+    border-radius: 10px;
+    width: 500px;
+    height: 500px;
+    background-color: #4fbbe5;
+    margin: 50px auto;
+}
+
+.profile-options-header {
+    border-radius: 10px;
+    background-color: #336e85;
+    text-align: center;
+}
+
+    .profile-options-header a {
+        color: azure;
+    }
+
+.profile-options-fields {
+    margin-left: 10px
+}

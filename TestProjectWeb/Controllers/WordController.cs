@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TestProjectWeb.Data;
 using TestProjectWeb.Data.DbModels;
 using TestProjectWeb.Data.Enums;
@@ -7,6 +8,7 @@ using TestProjectWeb.Services;
 
 namespace TestProjectWeb.Controllers
 {
+    [Authorize]
     public class WordController : Controller
     {
         private WordRepository _wordRepository;

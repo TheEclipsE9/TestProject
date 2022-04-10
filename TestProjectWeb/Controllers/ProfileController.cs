@@ -61,6 +61,17 @@ namespace TestProjectWeb.Controllers
             profileViewModel.WordViewModels = wordViewModels;
             
             return View(profileViewModel);
-        }              
+        }
+
+        [HttpPost]
+        public IActionResult EditProfile(ProfileViewModel profileViewModel)
+        {
+            var user = _userService.GetCurrentUser();
+            user.Name = profileViewModel.UserViewModel.Name;
+
+            _userRepository.EditUser(user);
+
+            return RedirectToAction("Profile");
+        }
     }
 }

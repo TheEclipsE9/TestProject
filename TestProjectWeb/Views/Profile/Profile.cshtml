@@ -2,6 +2,7 @@
 @model ProfileViewModel
 @section Scripts{
 <link rel="stylesheet" href="~/css/profileProfile.css">
+<script src="~/js/profile.js"></script>
 }
 
 <div class="profile">
@@ -31,10 +32,10 @@
         </div>
         <div class="profile-side-links">
             <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Options</a>
-            </div>            
+                <a class="link-options-open" href="#">Options</a>
+            </div>
             <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Delete account</a>
+                <a asp-area="" asp-controller="Account" asp-action="DeleteAccount" asp-route-id="@Model.UserViewModel.Id">Delete account</a>
             </div>
         </div>
         <div class="profile-side-actions">
@@ -111,6 +112,28 @@
                 </div>
             }
 
+        </div>
+    </div>
+</div>
+
+
+<div class="profile-options">
+    <div class="profile-options-window">
+        <div class="profile-options-header">
+            <a href="#" class="link-options-close">Close</a>
+        </div>
+        <div class="profile-options-fields">
+            <form method="post" asp-controller="Profile" asp-action="EditProfile" asp-antiforgery="true">
+                <div>
+                    <label asp-for="UserViewModel.Name"></label>
+                </div>
+                <div>
+                    <input type="text" asp-for="UserViewModel.Name" />
+                </div>
+                <div>
+                    <input type="submit" value="Change" />
+                </div>
+            </form>
         </div>
     </div>
 </div>

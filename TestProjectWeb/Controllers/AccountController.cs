@@ -120,7 +120,7 @@ namespace TestProjectWeb.Controllers
             var user = _userRepository.GetById(id);
             _userRepository.DeleteUser(user);
 
-            return RedirectToAction("AllAccounts");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
