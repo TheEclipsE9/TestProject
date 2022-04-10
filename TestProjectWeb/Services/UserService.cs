@@ -18,7 +18,11 @@ namespace TestProjectWeb.Services
         public User GetCurrentUser()
         {
             var claim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Id");
-            var idClaim = claim.Value;
+            if (claim == null)
+            {
+                return null;
+            }
+            var idClaim = claim?.Value;
             var id = int.Parse(idClaim);
 
             return _userRepository.GetById(id);

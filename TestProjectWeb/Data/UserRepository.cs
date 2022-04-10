@@ -32,6 +32,12 @@ namespace TestProjectWeb.Data
             _dbContext.SaveChanges();
         }
 
+        public void EditUser(User user)
+        {
+            _dbContext.Users.Update(user);
+            _dbContext.SaveChanges();
+        }
+
         public void DeleteUser(User user)
         {
             _dbContext.Users.Remove(user);

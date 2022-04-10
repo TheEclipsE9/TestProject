@@ -1,16 +1,77 @@
 ﻿@using TestProjectWeb.Models
 @model List<UserViewModel>
+@section Scripts{
+    <link rel="stylesheet" href="~/css/userAllUsers.css">
+}
 
-<div>
-    <div>
-        All users:
-    </div>
-    <div>          
+<div class="allUsers">
+    <div class="allUsers-content-table">
+        <div class="allUsers-content-table-row">
+            <div class="allUsers-content-table-row-title">
+                <div>
+                    Id
+                </div>
+            </div>
+            <div class="allUsers-content-table-row-title">
+                <div>
+                    Name
+                </div>
+            </div>
+            <div class="allUsers-content-table-row-title">
+                <div>
+                    Country
+                </div>
+            </div>
+            <div class="allUsers-content-table-row-title">
+                <div>
+                    City
+                </div>
+            </div>
+            <div class="allUsers-content-table-row-title">
+                <div>
+                    LearningLanguage
+                </div>
+            </div>
+            <div class="allUsers-content-table-row-title">
+                <div>
+                    LanguageLevel
+                </div>
+            </div>
+        </div>
         @foreach (var user in Model)
         {
-            <div> 
-                <a asp-controller="User" asp-action="UserProfile" asp-route-id="@user.Id">@user.Name</a>
+            <div class="allUsers-content-table-row">
+                <div class="allUsers-content-table-row-item">
+                    <div>
+                        @user.Id
+                    </div>
+                </div>
+                <div class="allUsers-content-table-row-item">
+                    <div>
+                        <a asp-controller="User" asp-action="UserProfile" asp-route-id="@user.Id">@user.Name</a>                        
+                    </div>
+                </div>
+                <div class="allUsers-content-table-row-item">
+                    <div>
+                        @user.Country
+                    </div>
+                </div>
+                <div class="allUsers-content-table-row-item">
+                    <div>
+                        @user.City
+                    </div>
+                </div>
+                <div class="allUsers-content-table-row-item">
+                    <div>
+                        @user.LearningLanguage
+                    </div>
+                </div>
+                <div class="allUsers-content-table-row-item">
+                    <div>
+                        @user.LanguageLevel
+                    </div>
+                </div>
             </div>
-        }   
-    </div>  
+        }
+    </div>
 </div>
