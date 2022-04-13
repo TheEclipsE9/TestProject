@@ -48,10 +48,14 @@ namespace TestProjectWeb.Controllers
         public IActionResult CreateQuiz(CreateQuizViewModel createQuizViewModel)
         {
             var user = _userService.GetCurrentUser();
-            var maxQuantity = _quizRepository.GetAllByCreaterId(user.Id).Count;
-            if (maxQuantity > createQuizViewModel.QuestionsQuantity)
+            var maxQuantity = _wordRepository.GetAllByCreaterId(user.Id).Count;
+            if (maxQuantity < createQuizViewModel.QuestionsQuantity)
             {
-                ModelState.AddModelError("QuestionsQuantity", $"Max words is {maxQuantity}");
+                ModelState.AddModelError("QuestionsQuantity", $"Max word quantity is {maxQuantity}");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View();
             }
             var quiz = _quizService.CreateQuiz(createQuizViewModel.Title, createQuizViewModel.QuestionsQuantity);
 
