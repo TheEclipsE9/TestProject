@@ -26,7 +26,8 @@ namespace TestProjectWeb.Controllers
             _wordRepository = wordRepository;
         }
         
-        public IActionResult Profile()
+        [HttpGet]
+        public IActionResult Profile(string seacrhWord)
         {
             var profileViewModel = new ProfileViewModel();
 
@@ -44,7 +45,19 @@ namespace TestProjectWeb.Controllers
 
             var wordViewModels = new List<WordViewModel>();
 
-            var words = _wordRepository.GetAllByCreaterId(user.Id);
+            var words = new List<Word>();
+            if (seacrhWord == "" || seacrhWord == null)
+            {
+                words = _wordRepository.GetAllByCreaterId(user.Id);
+            }
+            else
+            {
+                words = _wordRepository.GetAllByCreaterId(user.Id)
+                    .Where(x => x.Value.Contains(seacrhWord) ||
+                                x.Translation.Contains(seacrhWord) ||
+                                x.Category.Contains(seacrhWord)).ToList();
+            }
+
             foreach (var word in words)
             {
                 var wordViewModel = new WordViewModel();

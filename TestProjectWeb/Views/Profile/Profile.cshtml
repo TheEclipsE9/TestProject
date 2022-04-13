@@ -1,7 +1,6 @@
 ﻿@using TestProjectWeb.Models;
 @model ProfileViewModel
 @section Scripts{
-<link rel="stylesheet" href="~/css/profileProfile.css">
 <script src="~/js/profile.js"></script>
 }
 
@@ -46,7 +45,7 @@
                 <a asp-area="" asp-controller="Word" asp-action="CreateWord">Create word</a>
             </div>
             <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Random trenning</a>
+                <a asp-area="" asp-controller="Word" asp-action="#">Random tranning</a>
             </div>
             <div>
                 <a asp-area="" asp-controller="Word" asp-action="#">Create quiz</a>
@@ -55,7 +54,8 @@
     </div>
     <div class="profile-content">
         <div class="profile-content-search">
-            Search:
+            <input class="search-word" type="text" />
+            <input class="search-link" type="submit"  value="search" />
         </div>
         <div class="profile-content-table">
             <div class="profile-content-table-row">
