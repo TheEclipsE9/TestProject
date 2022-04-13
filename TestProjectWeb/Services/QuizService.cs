@@ -37,7 +37,8 @@ namespace TestProjectWeb.Services
             var index = RandomIndex();
             var word = _wordRepository.GetRandomWord(index);
             var variants = GetVariants(word.Translation);
-            var question = new Question { 
+            var question = new Question
+            {
                 Ask = word.Value,
                 Answer = word.Translation,
                 Variants = variants,
@@ -53,7 +54,7 @@ namespace TestProjectWeb.Services
             for (int i = 0; i < quantity; i++)
             {
                 var question = GetRandomQuestion();
-                if (result.Any(x=> x.Ask == question.Ask))
+                if (result.Any(x => x.Ask == question.Ask))
                 {
                     i--;
                     continue;
@@ -65,16 +66,37 @@ namespace TestProjectWeb.Services
 
         private List<Variant> GetVariants(string answer)
         {
-            var randomIndex = RandomIndex();
+            int randomIndex;
             var result = new List<Variant>();
             for (int i = 0; i < 3; i++)
             {
+                randomIndex = RandomIndex();
                 var variant = _wordRepository.GetRandomWord(randomIndex).Translation;
-                if (variant == answer ||result.Any(x => x.Value == variant))
+                if (variant == answer || result.Any(x => x.Value == variant))
                 {
                     i--;
                     continue;
                 }
+                var dbVariant = new Variant
+                {
+                    Value = variant,
+                };
+                result.Add(dbVariant);
+            }
+
+            var dbAnswer = new Variant
+            {
+                Value = answer,
+            };
+
+            result.Add(dbAnswer);
+
+            for (int i = result.Count - 1; i >= 1; i--)
+            {
+                int j = _random.Next(i + 1);
+                var temp = result[j];
+                result[j] = result[i];
+                result[i] = temp;
             }
 
             return result;
@@ -85,5 +107,7 @@ namespace TestProjectWeb.Services
             var index = _random.Next(_wordRepository.GetAll().Count);
             return index;
         }
+
+
     }
 }

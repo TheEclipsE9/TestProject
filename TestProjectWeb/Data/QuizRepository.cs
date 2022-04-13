@@ -15,6 +15,14 @@ namespace TestProjectWeb.Data
         {
             return _dbContext.Quizzes.ToList();
         }
+        public List<Quiz> GetAllByCreaterId(int id)
+        {
+            return _dbContext.Quizzes.Where(x => x.Creater.Id == id).ToList();
+        }
+        public Quiz GetById(int id)
+        {
+            return _dbContext.Quizzes.Where(x => x.Id == id).FirstOrDefault();
+        }
 
         public List<Quiz> GetByCreaterId(int id)
         {
@@ -24,6 +32,11 @@ namespace TestProjectWeb.Data
         public void CreateQuiz(Quiz quiz)
         {
             _dbContext.Quizzes.Add(quiz);
+            _dbContext.SaveChanges();
+        }
+        public void DeleteQuiz(Quiz quiz)
+        {
+            _dbContext.Quizzes.Remove(quiz);
             _dbContext.SaveChanges();
         }
     }

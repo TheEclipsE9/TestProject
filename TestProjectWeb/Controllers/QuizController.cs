@@ -21,7 +21,7 @@ namespace TestProjectWeb.Controllers
             _quizRepository = quizRepository;
         }
 
-        public IActionResult myQuizzes()
+        public IActionResult MyQuizzes()
         {
             var user = _userService.GetCurrentUser();
             var myQuizzes = _quizRepository.GetByCreaterId(user.Id);
@@ -39,7 +39,7 @@ namespace TestProjectWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateQuiz( )
+        public IActionResult CreateQuiz()
         {
             return View();
         }
@@ -47,9 +47,60 @@ namespace TestProjectWeb.Controllers
         [HttpPost]
         public IActionResult CreateQuiz(CreateQuizViewModel createQuizViewModel)
         {
+            var user = _userService.GetCurrentUser();
+            var maxQuantity = _quizRepository.GetAllByCreaterId(user.Id).Count;
+            if (maxQuantity > createQuizViewModel.QuestionsQuantity)
+            {
+                ModelState.AddModelError("QuestionsQuantity", $"Max words is {maxQuantity}");
+            }
             var quiz = _quizService.CreateQuiz(createQuizViewModel.Title, createQuizViewModel.QuestionsQuantity);
 
             _quizRepository.CreateQuiz(quiz);
+
+            return RedirectToAction("myQuizzes");
+        }
+
+        public IActionResult PlayQuiz(int id)
+        {
+            var quiz = _quizRepository.GetById(id);
+
+            var questionViewModels = new List<QuestionViewModel>();
+
+            foreach (var question in quiz.Questions)
+            {
+                var variantViewModels = new List<VariantViewModel>();
+                foreach (var variant in question.Variants)
+                {
+                    var variantViewModel = new VariantViewModel
+                    {
+                        Value = variant.Value,
+                    };
+                    variantViewModels.Add(variantViewModel);
+                }
+
+                var questionViewModel = new QuestionViewModel
+                {
+                    Ask = question.Ask,
+                    Answer = question.Answer,
+                    VariantViewModels = variantViewModels,
+                };
+                questionViewModels.Add(questionViewModel);
+            }
+
+            var quizViewModel = new QuizViewModel
+            {
+                Id = quiz.Id,
+                Title = quiz.Title,
+                QuestionViewModels = questionViewModels,
+            };
+
+            return View(quizViewModel);
+        }
+
+        public IActionResult DeleteQuiz(int id)
+        {
+            var quiz = _quizRepository.GetById(id);
+            _quizRepository.DeleteQuiz(quiz);
 
             return RedirectToAction("myQuizzes");
         }
