@@ -1,0 +1,15 @@
+﻿@model List<CreateQuizViewModel>
+
+<div>
+    <div>
+        Create Quiz!!!
+    </div>
+    <div>
+        <select>
+            @foreach (var word in Model)
+            {
+                <option value="@word.Word">@word.Word</option>
+            }    
+        </select>
+    </div>
+</div>
