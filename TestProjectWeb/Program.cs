@@ -27,11 +27,22 @@ builder.Services.AddScoped<WordRepository>(diContainer =>
     var repository = new WordRepository(applicationDbContext);
     return repository;
 });
+builder.Services.AddScoped<QuizRepository>(diContainer =>
+{
+    var applicationDbContext = diContainer.GetService<ApplicationDbContext>();
+    var repository = new QuizRepository(applicationDbContext);
+    return repository;
+});
 
 builder.Services.AddScoped<UserService>(diContainer => 
     new UserService(diContainer.GetService<UserRepository>(), 
                     diContainer.GetService<IHttpContextAccessor>()
-)); 
+));
+builder.Services.AddScoped<QuizService>(diContainer =>
+    new QuizService(diContainer.GetService<UserRepository>(),
+                    diContainer.GetService<UserService>(),
+                    diContainer.GetService<WordRepository>()
+));
 
 builder.Services.AddAuthentication("AuthCookie")
     .AddCookie("AuthCookie", config => {

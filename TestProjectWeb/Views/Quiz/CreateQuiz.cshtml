@@ -1,15 +1,25 @@
-﻿@model List<CreateQuizViewModel>
+﻿@model CreateQuizViewModel
 
 <div>
-    <div>
-        Create Quiz!!!
-    </div>
-    <div>
-        <select>
-            @foreach (var word in Model)
-            {
-                <option value="@word.Word">@word.Word</option>
-            }    
-        </select>
-    </div>
+    <form method="post" asp-controller="Quiz" asp-action="CreateQuiz" asp-antiforgery="true">
+        <div>
+            <div>
+                <label asp-for="Title"></label>
+            </div>
+            <div>
+                <input type="text" asp-for="Title" />
+            </div>
+        </div>
+        <div>
+            <div>
+                <label asp-for="QuestionsQuantity"></label>
+            </div>
+            <div>
+                <input type="number" asp-for="QuestionsQuantity" />
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Create" />
+        </div>
+    </form>
 </div>

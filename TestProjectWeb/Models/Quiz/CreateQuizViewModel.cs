@@ -5,7 +5,7 @@ namespace TestProjectWeb.Models
 {
     public class CreateQuizViewModel
     {
-        public string Word { get; set; }
-        public string Translate { get; set; }
+        public string Title { get; set; }
+        public int QuestionsQuantity { get; set; }
     }
 }

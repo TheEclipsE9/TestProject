@@ -10,49 +10,48 @@ namespace TestProjectWeb.Controllers
     {
         private WordRepository _wordRepository;
         private UserService _userService;
+        private QuizService _quizService;
+        private QuizRepository _quizRepository;
 
-        public QuizController(WordRepository wordRepository, UserService userService)
+        public QuizController(WordRepository wordRepository, UserService userService, QuizService quizService, QuizRepository quizRepository)
         {
             _wordRepository = wordRepository;
             _userService = userService;
+            _quizService = quizService;
+            _quizRepository = quizRepository;
         }
 
         public IActionResult myQuizzes()
         {
-            return View();
+            var user = _userService.GetCurrentUser();
+            var myQuizzes = _quizRepository.GetByCreaterId(user.Id);
+            var quizViewModels = new List<QuizViewModel>();
+            foreach (var quiz in myQuizzes)
+            {
+                var quizViewModel = new QuizViewModel
+                {
+                    Id = quiz.Id,
+                    Title = quiz.Title
+                };
+                quizViewModels.Add(quizViewModel);
+            }
+            return View(quizViewModels);
         }
 
         [HttpGet]
-        public IActionResult CreateQuiz()
+        public IActionResult CreateQuiz( )
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult CreateQuiz(QuizViewModel quizViewModel)
+        public IActionResult CreateQuiz(CreateQuizViewModel createQuizViewModel)
         {
-            var user = _userService.GetCurrentUser();
-            var questions = new List<Question>();
-            foreach (var questionViewModel in quizViewModel.QuestionViewModels)
-            {
-                var variants = new List<Variant>();
-                variants.Add(questionViewModel.Answer);
-                for
-                var question = new Question
-                {
-                    Ask = questionViewModel.Ask,
-                    Answer = questionViewModel.Answer,
-                    Variants = variants,
-                };
-            }
+            var quiz = _quizService.CreateQuiz(createQuizViewModel.Title, createQuizViewModel.QuestionsQuantity);
 
-            var quiz = new Quiz
-            {
-                Title = quizViewModel.Title,
-                Creater = user,
-                Questions = questions,
-            };
+            _quizRepository.CreateQuiz(quiz);
 
-            return View();
+            return RedirectToAction("myQuizzes");
         }
     }
 }

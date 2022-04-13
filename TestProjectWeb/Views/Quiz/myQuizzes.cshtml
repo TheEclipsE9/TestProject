@@ -1,5 +1,16 @@
-﻿
+﻿@model List<QuizViewModel>
+
 <div>
-    My Quizzes!!!
+    Mu quizzes!!!
+    <div>
+        @foreach (var quiz in Model)
+        {
+            <div>
+                quiz id: @quiz.Id---quiz title: @quiz.Title
+            </div>
+        }
+    </div>
 </div>
-<a asp-area="" asp-controller="Quiz" asp-action="CreateQuiz">Create Quiz</a>
+<div>
+    <a asp-controller="Quiz" asp-action="CreateQuiz">Create quiz</a>
+</div>

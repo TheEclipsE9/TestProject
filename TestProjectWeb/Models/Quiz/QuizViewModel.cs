@@ -7,8 +7,5 @@ namespace TestProjectWeb.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public List<QuestionViewModel> QuestionViewModels { get; set; }
-
-        public int CreaterId { get; set; }
     }
 }
