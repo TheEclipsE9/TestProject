@@ -1,6 +1,4 @@
 ﻿$(document).ready(function () {
-    console.log("js!");
-
     $('.link-options-open').click(function () {
         console.log("show!")
         $('.profile-options').show();
@@ -19,5 +17,17 @@
         $('.delete-account').hide();
     });
 
-
+    $('.search-link').click(function (evt) {
+        evt.preventDefault();
+        let searchWord = $('.search-word').val();
+        let url = '';
+        if (searchWord === "") {
+            url = '/Profile/Profile';
+        }
+        else {
+            url = `/Profile/Profile?seacrhWord=${searchWord}`
+        }
+                
+        window.location.replace(url);
+    })
 });
