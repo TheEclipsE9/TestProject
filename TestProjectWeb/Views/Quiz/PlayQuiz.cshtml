@@ -1,0 +1,40 @@
+﻿@model QuizViewModel
+@section Scripts{
+<script src="~/js/quiz.js"></script>
+}
+
+<div class="quiz-content">
+    <div>
+        Quiz id: @Model.Id
+    </div>
+    <div>
+        Quiz Title: @Model.Title
+    </div>
+    <div>
+        @{int index = 0;}
+        @foreach (var questionViewModel in @Model.QuestionViewModels)
+        {
+            <div>
+                <div class="quiz-ask-@index">
+                    Ask: @questionViewModel.Ask
+                </div>
+                Your answer:
+                <select class="quiz-userAnswer-@index" name="answer">
+                    @foreach (var variantViewModel in questionViewModel.VariantViewModels)
+                    {
+
+                        <option value="@variantViewModel.Value">
+                            @variantViewModel.Value
+                        </option>
+                    }
+                </select>
+                <input type="hidden" class="quiz-correctAnswer-@index" value="@questionViewModel.Answer"></input>
+            </div>
+            index++;
+        }
+    </div>
+    <div>
+        <input class="check-quiz" type="submit" value="Check" />
+        <a asp-controller="Quiz" asp-action="MyQuizzes">Back</a>
+    </div>
+</div>

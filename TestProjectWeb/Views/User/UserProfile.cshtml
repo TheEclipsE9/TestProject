@@ -28,24 +28,24 @@
         </div>
     </div>
     <div class="profile-content">
-        <div class="profile-content-table">
-            <div class="profile-content-table-row">
-                <div class="profile-content-table-row-title">
+        <div class="user-word-table">
+            <div class="user-word-table-columns table-row">
+                <div class="table-column-title">
                     <div>
                         Word
                     </div>
                 </div>
-                <div class="profile-content-table-row-title">
+                <div class="table-column-title">
                     <div>
                         Translation
                     </div>
                 </div>
-                <div class="profile-content-table-row-title">
+                <div class="table-column-title">
                     <div>
                         Category
                     </div>
                 </div>
-                <div class="profile-content-table-row-title">
+                <div class="table-column-title">
                     <div>
                         Part of Speech
                     </div>
@@ -53,8 +53,8 @@
             </div>
             @foreach (var word in @Model.WordViewModels)
             {
-                <div class="profile-content-table-row">
-                    <div class="profile-content-table-row-item">
+                <div class="user-word-table-columns table-row">
+                    <div class="table-column-item">
                         <div>
                             <span>
                                 @word.Value
@@ -74,24 +74,23 @@
                             </span>
                         </div>
                     </div>
-                    <div class="profile-content-table-row-item">
+                    <div class="table-column-item">
                         <div>
                             @word.Translation
                         </div>
                     </div>
-                    <div class="profile-content-table-row-item">
+                    <div class="table-column-item">
                         <div>
                             @word.Category
                         </div>
                     </div>
-                    <div class="profile-content-table-row-item">
+                    <div class="table-column-item">
                         <div>
                             @word.PartOfSpeech
                         </div>
                     </div>
                 </div>
             }
-
         </div>
     </div>
 </div>

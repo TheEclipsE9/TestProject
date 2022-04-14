@@ -18,5 +18,6 @@ namespace TestProjectWeb.Data.DbModels
         public string Password { get; set; }
 
         public virtual List<Word> Words { get; set; }
+        public virtual List<Quiz> Quizzes { get; set; }
     }
 }

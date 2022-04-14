@@ -1,0 +1,41 @@
+input[type=submit] {
+    background-color: #336e85;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    margin-top: 5px;
+    text-align: center;
+}
+
+input[type=text] {
+    background-color: azure;
+    border-radius: 10px;
+    border: none;
+}
+
+input[type=password] {
+    background-color: azure;
+    border-radius: 10px;
+    border: none;
+}
+
+select {
+    background-color: azure;
+    border-radius: 10px;
+    border: none;
+}
+
+.parent-for-all-fields {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.fields {
+    padding-left: 10px;
+    background-color: #4fbbe5;
+    border-radius: 10px;
+}
+.fields-title {
+    font-size: 20px;
+    text-align: center;
+}

@@ -1,0 +1,6 @@
+.allUsers {
+    margin: 0 15px;
+}
+.allUsers-users-table-columns {
+    grid-template-columns: repeat(6, 1fr);
+}

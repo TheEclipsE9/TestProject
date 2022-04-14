@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestProjectWeb.Data;
 
@@ -10,9 +11,10 @@ using TestProjectWeb.Data;
 namespace TestProjectWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220413112546_dbQuizUpdate")]
+    partial class dbQuizUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,7 +130,7 @@ namespace TestProjectWeb.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("Variants");
+                    b.ToTable("Variant");
                 });
 
             modelBuilder.Entity("TestProjectWeb.Data.DbModels.Word", b =>

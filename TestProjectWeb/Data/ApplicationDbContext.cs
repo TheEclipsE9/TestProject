@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TestProjectWeb.Data.DbModels;
-using TestProjectWeb.Models;
 
 namespace TestProjectWeb.Data
 {
@@ -8,6 +7,9 @@ namespace TestProjectWeb.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Word> Words { get; set; }
+        public DbSet<Quiz> Quizzes { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Variant> Variants { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -17,6 +19,10 @@ namespace TestProjectWeb.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasMany(x => x.Words).WithOne(x => x.Creater);
+
+            modelBuilder.Entity<User>().HasMany(x => x.Quizzes).WithOne(x => x.Creater);
+            modelBuilder.Entity<Quiz>().HasMany(x => x.Questions).WithOne(x => x.Quiz);
+            modelBuilder.Entity<Question>().HasMany(x => x.Variants).WithOne(x => x.Question);
 
             base.OnModelCreating(modelBuilder);
         }

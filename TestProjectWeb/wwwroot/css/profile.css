@@ -1,3 +1,4 @@
+/*current user profile styles*/
 .profile {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -30,9 +31,6 @@
     border-top: 3px solid #336e85;
 }
 
-.profile-content {
-}
-
 .profile-content-search {
     display: grid;
     grid-template-columns: 1fr 0.1fr;
@@ -43,29 +41,9 @@
     margin-bottom: 10px;
 }
 
-.profile-content-table {
-}
-
-.profile-content-table-row {
-    display: grid;
+.profile-word-table-columns {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-
-.profile-content-table-row-title {
-    color: azure;
-    background-color: #336e85;
-    padding: 10px;
-}
-
-.profile-content-table-row-item {
-    background-color: #4fbbe5;
-    padding: 10px;
-}
-
-    .profile-content-table-row-item div {
-        display: flex;
-        justify-content: space-between;
-    }
 
 .profile-options {
     display: none;
@@ -93,14 +71,6 @@
     text-align: center;
 }
 
-.link-options-close {
-    color: azure;
-}
-
-.profile-options-fields {
-    margin-left: 10px
-}
-
 .delete-account {
     display: none;
     position: absolute;
@@ -119,6 +89,9 @@
     margin: 50px auto;
 }
 
-.link-deleteAccount-close {
-    color: azure;
+
+
+/*User profile styles*/
+.user-word-table-columns{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }

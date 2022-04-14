@@ -1,0 +1,16 @@
+.table-row {
+    display: grid;
+}
+.table-column-title {
+    color: azure;
+    background-color: #336e85;
+    padding: 10px;
+}
+.table-column-item {
+    background-color: #4fbbe5;
+    padding: 10px;
+}
+    .table-column-item div {
+        display: flex;
+        justify-content: space-between;
+    }

@@ -11,7 +11,6 @@ namespace TestProjectWeb.Controllers
 {
     public class AccountController : Controller
     {
-        private WordRepository _wordRepository;
         private UserRepository _userRepository;
         private UserService _userService;
 
@@ -22,7 +21,6 @@ namespace TestProjectWeb.Controllers
         {
             _userRepository = userRepository;
             _userService = userService;
-            _wordRepository = wordRepository;
         }
 
         [HttpGet]
