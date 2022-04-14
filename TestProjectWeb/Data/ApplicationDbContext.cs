@@ -9,6 +9,7 @@ namespace TestProjectWeb.Data
         public DbSet<Word> Words { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Variant> Variants { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
