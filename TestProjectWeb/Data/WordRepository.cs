@@ -24,11 +24,19 @@ namespace TestProjectWeb.Data
         {
             return _dbContext.Words.Where(word => word.Id == id).FirstOrDefault();
         }
-        public Word GetRandomWord(int index)
+        public Word GetRandomWordFromAll(int index)
         {
-            var words = _dbContext.Words.ToArray();
+            var words = _dbContext.Words.ToList();
 
             var result = words[index];
+            return result;
+        }
+        public Word GetRandomWordFromCurrentUser(int id, int index)
+        {
+            var words = _dbContext.Words.Where(x => x.Creater.Id == id).ToList();
+
+            var result = words[index];
+
             return result;
         }
 

@@ -34,8 +34,9 @@ namespace TestProjectWeb.Services
 
         private Question GetRandomQuestion()
         {
-            var index = RandomIndex();
-            var word = _wordRepository.GetRandomWord(index);
+            var user = _userService.GetCurrentUser();
+            var index = RandomIndexForCurrentUser(user.Id);
+            var word = _wordRepository.GetRandomWordFromCurrentUser(user.Id, index);
             var variants = GetVariants(word.Translation);
             var question = new Question
             {
@@ -70,8 +71,8 @@ namespace TestProjectWeb.Services
             var result = new List<Variant>();
             for (int i = 0; i < 3; i++)
             {
-                randomIndex = RandomIndex();
-                var variant = _wordRepository.GetRandomWord(randomIndex).Translation;
+                randomIndex = RandomIndexForAll();
+                var variant = _wordRepository.GetRandomWordFromAll(randomIndex).Translation;
                 if (variant == answer || result.Any(x => x.Value == variant))
                 {
                     i--;
@@ -102,9 +103,14 @@ namespace TestProjectWeb.Services
             return result;
         }
 
-        private int RandomIndex()
+        private int RandomIndexForAll()
         {
             var index = _random.Next(_wordRepository.GetAll().Count);
+            return index;
+        }
+        private int RandomIndexForCurrentUser(int id)
+        {
+            var index = _random.Next(_wordRepository.GetAllByCreaterId(id).Count);
             return index;
         }
 
