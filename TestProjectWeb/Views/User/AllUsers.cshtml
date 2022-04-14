@@ -2,34 +2,34 @@
 @model List<UserViewModel>
 
 <div class="allUsers">
-    <div class="allUsers-content-table">
-        <div class="allUsers-content-table-row">
-            <div class="allUsers-content-table-row-title">
+    <div class="allUsers-users-table">
+        <div class="allUsers-users-table-columns table-row">
+            <div class="table-column-title">
                 <div>
                     Id
                 </div>
             </div>
-            <div class="allUsers-content-table-row-title">
+            <div class="table-column-title">
                 <div>
                     Name
                 </div>
             </div>
-            <div class="allUsers-content-table-row-title">
+            <div class="table-column-title">
                 <div>
                     Country
                 </div>
             </div>
-            <div class="allUsers-content-table-row-title">
+            <div class="table-column-title">
                 <div>
                     City
                 </div>
             </div>
-            <div class="allUsers-content-table-row-title">
+            <div class="table-column-title">
                 <div>
                     LearningLanguage
                 </div>
             </div>
-            <div class="allUsers-content-table-row-title">
+            <div class="table-column-title">
                 <div>
                     LanguageLevel
                 </div>
@@ -37,33 +37,33 @@
         </div>
         @foreach (var user in Model)
         {
-            <div class="allUsers-content-table-row">
-                <div class="allUsers-content-table-row-item">
+            <div class="allUsers-users-table-columns table-row">
+                <div class="table-column-item">
                     <div>
                         @user.Id
                     </div>
                 </div>
-                <div class="allUsers-content-table-row-item">
+                <div class="table-column-item">
                     <div>
                         <a asp-controller="User" asp-action="UserProfile" asp-route-id="@user.Id">@user.Name</a>                        
                     </div>
                 </div>
-                <div class="allUsers-content-table-row-item">
+                <div class="table-column-item">
                     <div>
                         @user.Country
                     </div>
                 </div>
-                <div class="allUsers-content-table-row-item">
+                <div class="table-column-item">
                     <div>
                         @user.City
                     </div>
                 </div>
-                <div class="allUsers-content-table-row-item">
+                <div class="table-column-item">
                     <div>
                         @user.LearningLanguage
                     </div>
                 </div>
-                <div class="allUsers-content-table-row-item">
+                <div class="table-column-item">
                     <div>
                         @user.LanguageLevel
                     </div>

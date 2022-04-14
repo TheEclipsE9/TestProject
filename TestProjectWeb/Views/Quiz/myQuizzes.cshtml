@@ -1,45 +1,47 @@
 ﻿@model List<QuizViewModel>
 
-<div>
-    Mu quizzes!!!
-    <div class="profile-content-table">
-        <div class="profile-content-table-row">
-            <div class="profile-content-table-row-title">
+<div class="quiz-content">
+    <div>
+        My Quizzes!!!
+    </div>
+    <div class="myQuizzes-quiz-table">
+        <div class="myQuizzes-quiz-table-columns table-row">
+            <div class="table-column-title">
                 <div>
                     Id
                 </div>
             </div>
-            <div class="profile-content-table-row-title">
+            <div class="table-column-title">
                 <div>
                     Title
                 </div>
             </div>
         </div>
+        <div>
+            @foreach (var quiz in Model)
+            {
+                <div class="myQuizzes-quiz-table-columns table-row">
+                    <div class="table-column-item">
+                        <div>
+                            <span>
+                                @quiz.Id
+                            </span>
+                            <span>
+                                <a asp-controller="Quiz" asp-action="PlayQuiz" asp-route-id="@quiz.Id">Play</a>
+                                <a asp-controller="Quiz" asp-action="DeleteQuiz" asp-route-id="@quiz.Id">Delete</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="table-column-item">
+                        <div>
+                            @quiz.Title
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
     <div>
-        @foreach (var quiz in Model)
-        {
-            <div class="profile-content-table-row">
-                <div class="profile-content-table-row-item">
-                    <div>
-                        <span>
-                            @quiz.Id
-                        </span>
-                        <span>
-                            <a asp-controller="Quiz" asp-action="PlayQuiz" asp-route-id="@quiz.Id">Play</a>
-                            <a asp-controller="Quiz" asp-action="DeleteQuiz" asp-route-id="@quiz.Id">Delete</a>
-                        </span>
-                    </div>
-                </div>
-                <div class="profile-content-table-row-item">
-                    <div>
-                        @quiz.Title
-                    </div>
-                </div>
-            </div>
-        }
+        <a asp-controller="Quiz" asp-action="CreateQuiz">Create quiz</a>
     </div>
-</div>
-<div>
-    <a asp-controller="Quiz" asp-action="CreateQuiz">Create quiz</a>
 </div>

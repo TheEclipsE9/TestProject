@@ -1,0 +1,8 @@
+.quiz-content {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr;
+}
+.myQuizzes-quiz-table-columns {
+    grid-template-columns: 1fr 1fr;
+}

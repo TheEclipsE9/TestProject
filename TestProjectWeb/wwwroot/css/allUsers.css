@@ -25,3 +25,7 @@
     .allUsers-content-table-row-item a {
         color: azure;
     }
+
+.allUsers-users-table-columns {
+    grid-template-columns: repeat(6, 1fr);
+}

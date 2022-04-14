@@ -26,43 +26,8 @@ header {
     background-color: #336e85;
 }
 
-a {
-    color: azure;
-    text-decoration: none;
-}
-
-input[type=submit] {
-    background-color: #336e85;
-    border-radius: 10px;
-    border: none;
-    color: white;
-    margin-top: 5px;
-    text-align: center;
-}
-
-input[type=text] {
-    background-color: azure;
-    border-radius: 10px;
-    border: none;
-}
-
-input[type=password] {
-    background-color: azure;
-    border-radius: 10px;
-    border: none;
-}
-
-select {
-    background-color: azure;
-    border-radius: 10px;
-    border: none;
-}
-
 .navbar {
     display: flex;
-}
-
-.content {
 }
 
 footer {
