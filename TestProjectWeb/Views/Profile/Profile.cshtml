@@ -31,21 +31,18 @@
         </div>
         <div class="profile-side-links">
             <div>
-                <a class="link-options-open" href="#">Options</a>
+                <a class="options-open link" href="#">Options</a>
             </div>
             <div>
-                <a class="link-deleteAccount-open" href="#">Delete account</a>
+                <a class="deleteAccount-open" href="#">Delete account</a>
             </div>
         </div>
         <div class="profile-side-actions">
             <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Random word</a>
+                <a href="#">Random word API(FUTURE)</a>
             </div>
             <div>
                 <a asp-area="" asp-controller="Word" asp-action="CreateWord">Create word</a>
-            </div>
-            <div>
-                <a asp-area="" asp-controller="Word" asp-action="#">Random tranning</a>
             </div>
             <div>
                 <a asp-area="" asp-controller="Quiz" asp-action="MyQuizzes">Quizzes</a>
@@ -119,7 +116,7 @@
 <div class="profile-options">
     <div class="profile-options-window">
         <div class="profile-options-header">
-            <div class="link-options-close">Close</div>
+            <div class="options-close link">Close</div>
         </div>
         <div class="parent-for-all-fields">
             <div class="fields">
@@ -150,7 +147,7 @@
         <div>
             <a asp-area="" asp-controller="Account" asp-action="DeleteAccount" asp-route-id="@Model.UserViewModel.Id">Yes</a>
         </div>
-        <div class="link-deleteAccount-close">
+        <div class="deleteAccount-close link">
             No
         </div>
     </div>
