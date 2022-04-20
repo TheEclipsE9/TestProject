@@ -13,6 +13,8 @@ namespace TestProjectWeb.Controllers
         private QuizService _quizService;
         private QuizRepository _quizRepository;
 
+        private const int MINQUESTIONSQUANTITY = 4;
+
         public QuizController(WordRepository wordRepository, UserService userService, QuizService quizService, QuizRepository quizRepository)
         {
             _wordRepository = wordRepository;
@@ -48,10 +50,18 @@ namespace TestProjectWeb.Controllers
         public IActionResult CreateQuiz(CreateQuizViewModel createQuizViewModel)
         {
             var user = _userService.GetCurrentUser();
-            var maxQuantity = _wordRepository.GetAllByCreaterId(user.Id).Count;
-            if (maxQuantity < createQuizViewModel.QuestionsQuantity)
+            var maxUserWordsQuantity = _wordRepository.GetAllByCreaterId(user.Id).Count;
+            if (maxUserWordsQuantity < MINQUESTIONSQUANTITY)
             {
-                ModelState.AddModelError("QuestionsQuantity", $"Max word quantity is {maxQuantity}");
+                ModelState.AddModelError("QuestionsQuantity", $"Add {MINQUESTIONSQUANTITY - maxUserWordsQuantity} more words to your vocabulary to create quiz!");
+            }
+            if (maxUserWordsQuantity < createQuizViewModel.QuestionsQuantity)
+            {
+                ModelState.AddModelError("QuestionsQuantity", $"Max questions quantity is {maxUserWordsQuantity}!");
+            }
+            if (MINQUESTIONSQUANTITY > createQuizViewModel.QuestionsQuantity)
+            {
+                ModelState.AddModelError("QuestionsQuantity", $"Min questions quantity is {MINQUESTIONSQUANTITY}!");
             }
             if (!ModelState.IsValid)
             {
