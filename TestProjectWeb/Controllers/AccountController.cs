@@ -56,7 +56,7 @@ namespace TestProjectWeb.Controllers
                 Login = registrationViewModel.Login,
                 Password = registrationViewModel.Password,
             };
-            _userRepository.CreateUser(newUser);
+            _userRepository.Create(newUser);
 
             return RedirectToAction("Login");
         }
@@ -116,7 +116,7 @@ namespace TestProjectWeb.Controllers
         {
             await HttpContext.SignOutAsync();
             var user = _userRepository.GetById(id);
-            _userRepository.DeleteUser(user);
+            _userRepository.Delete(user);
 
             return RedirectToAction("Index", "Home");
         }

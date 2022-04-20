@@ -59,7 +59,7 @@ namespace TestProjectWeb.Controllers
             }
             var quiz = _quizService.CreateQuiz(createQuizViewModel.Title, createQuizViewModel.QuestionsQuantity);
 
-            _quizRepository.CreateQuiz(quiz);
+            _quizRepository.Create(quiz);
 
             return RedirectToAction("myQuizzes");
         }
@@ -104,7 +104,7 @@ namespace TestProjectWeb.Controllers
         public IActionResult DeleteQuiz(int id)
         {
             var quiz = _quizRepository.GetById(id);
-            _quizRepository.DeleteQuiz(quiz);
+            _quizRepository.Delete(quiz);
 
             return RedirectToAction("myQuizzes");
         }

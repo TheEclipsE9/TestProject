@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using TestProjectWeb.Data.Enums;
+﻿using TestProjectWeb.Data.Enums;
 
 namespace TestProjectWeb.Data.DbModels
 {
-    public class Word
+    public class Word : BaseModel
     {
-        [Key]
-        public int Id { get; set; }
         public string Value { get; set; }
         public string Translation { get; set; }
         public string Category { get; set; }

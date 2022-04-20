@@ -1,11 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace TestProjectWeb.Data.DbModels
 {
-    public class Quiz
+    public class Quiz : BaseModel
     {
-        [Key]
-        public int Id { get; set; }
         public string Title { get; set; }
 
         public virtual List<Question> Questions{ get; set; }
