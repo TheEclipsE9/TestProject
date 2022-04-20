@@ -43,7 +43,7 @@ namespace TestProjectWeb.Controllers
             word.PartOfSpeech = wordViewModel.PartOfSpeech;
             word.Creater = user;
 
-            _wordRepository.CreateWord(word);
+            _wordRepository.Create(word);
             return RedirectToAction("Profile", "Profile");
         }
 
@@ -78,7 +78,7 @@ namespace TestProjectWeb.Controllers
             word.PartOfSpeech = wordViewModel.PartOfSpeech;
             word.Creater = user;
 
-            _wordRepository.EditWord(word);
+            _wordRepository.Edit(word);
 
             return RedirectToAction("Profile", "Profile");
         }
@@ -86,7 +86,7 @@ namespace TestProjectWeb.Controllers
         public IActionResult DeleteWord(int id)
         {
             var word = _wordRepository.GetById(id);
-            _wordRepository.DeleteWord(word);
+            _wordRepository.Delete(word);
 
             return RedirectToAction("Profile", "Profile");
         }
@@ -102,7 +102,7 @@ namespace TestProjectWeb.Controllers
             word.PartOfSpeech = partOfSpeech;
             word.Creater = user;
 
-            _wordRepository.CreateWord(word);
+            _wordRepository.Create(word);
 
             return RedirectToAction("UserProfile", "User", new {@id = createrId});
         }

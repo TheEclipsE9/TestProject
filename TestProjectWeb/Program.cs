@@ -36,7 +36,8 @@ builder.Services.AddScoped<QuizRepository>(diContainer =>
 
 builder.Services.AddScoped<UserService>(diContainer => 
     new UserService(diContainer.GetService<UserRepository>(), 
-                    diContainer.GetService<IHttpContextAccessor>()
+                    diContainer.GetService<IHttpContextAccessor>(),
+                    diContainer.GetService<WordRepository>()
 ));
 builder.Services.AddScoped<QuizService>(diContainer =>
     new QuizService(diContainer.GetService<UserRepository>(),
@@ -50,6 +51,8 @@ builder.Services.AddAuthentication("AuthCookie")
         config.AccessDeniedPath = "/Account/AccessDenied";
         config.Cookie.Name = "userInfo";
     });
+
+var servs = builder.Services.ToList();
 
 var app = builder.Build();
  

@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using TestProjectWeb.Data.Enums;
+﻿using TestProjectWeb.Data.Enums;
 
 namespace TestProjectWeb.Data.DbModels
 {
-    public class User
+    public class User : BaseModel
     {
-        [Key]
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
         public string City { get; set; }

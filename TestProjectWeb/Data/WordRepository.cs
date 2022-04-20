@@ -2,59 +2,27 @@
 
 namespace TestProjectWeb.Data
 {
-    public class WordRepository
+    public class WordRepository : BaseRepository<Word>
     {
-        private ApplicationDbContext _dbContext;
 
-        public WordRepository(ApplicationDbContext dbContext)
+        public WordRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
-            _dbContext = dbContext;
-        }
-
-        public List<Word> GetAll()
-        {
-            return _dbContext.Words.ToList();
+            
         }
 
         public List<Word> GetAllByCreaterId(int id)
         {
-            return _dbContext.Words.Where( x => x.Creater.Id == id).ToList();
+            return _dbSet.Where( x => x.Creater.Id == id).ToList();
         }
-        public Word GetById(int id)
-        {
-            return _dbContext.Words.Where(word => word.Id == id).FirstOrDefault();
-        }
+
         public Word GetRandomWordFromAll(int index)
         {
-            var words = _dbContext.Words.ToList();
-
-            var result = words[index];
-            return result;
+            return _dbSet.ToList()[index];
         }
+
         public Word GetRandomWordFromCurrentUser(int id, int index)
         {
-            var words = _dbContext.Words.Where(x => x.Creater.Id == id).ToList();
-
-            var result = words[index];
-
-            return result;
-        }
-
-        public void CreateWord(Word word)
-        {
-            _dbContext.Words.Add(word);
-            _dbContext.SaveChanges();
-        }
-
-        public void DeleteWord(Word word)
-        {
-            _dbContext.Words.Remove(word);
-            _dbContext.SaveChanges();
-        }
-        public void EditWord(Word word)
-        {
-            _dbContext.Words.Update(word);
-            _dbContext.SaveChanges();
+            return _dbSet.Where(x => x.Creater.Id == id).ToList()[index]; 
         }
     }
 }

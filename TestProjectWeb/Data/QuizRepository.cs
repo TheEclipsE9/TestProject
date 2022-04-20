@@ -2,42 +2,21 @@
 
 namespace TestProjectWeb.Data
 {
-    public class QuizRepository
+    public class QuizRepository : BaseRepository<Quiz>
     {
-        private ApplicationDbContext _dbContext;
-
-        public QuizRepository(ApplicationDbContext dbContext)
+        public QuizRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
-            _dbContext = dbContext;
+            
         }
 
-        public List<Quiz> GetAll()
-        {
-            return _dbContext.Quizzes.ToList();
-        }
         public List<Quiz> GetAllByCreaterId(int id)
         {
-            return _dbContext.Quizzes.Where(x => x.Creater.Id == id).ToList();
-        }
-        public Quiz GetById(int id)
-        {
-            return _dbContext.Quizzes.Where(x => x.Id == id).FirstOrDefault();
-        }
+            return _dbSet.Where(x => x.Creater.Id == id).ToList();
+        }        
 
         public List<Quiz> GetByCreaterId(int id)
         {
-            return _dbContext.Quizzes.Where(x => x.Creater.Id == id).ToList();
-        }
-
-        public void CreateQuiz(Quiz quiz)
-        {
-            _dbContext.Quizzes.Add(quiz);
-            _dbContext.SaveChanges();
-        }
-        public void DeleteQuiz(Quiz quiz)
-        {
-            _dbContext.Quizzes.Remove(quiz);
-            _dbContext.SaveChanges();
+            return _dbSet.Where(x => x.Creater.Id == id).ToList();
         }
     }
 }

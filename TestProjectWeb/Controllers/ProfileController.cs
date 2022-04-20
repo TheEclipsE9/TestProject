@@ -82,7 +82,7 @@ namespace TestProjectWeb.Controllers
             var user = _userService.GetCurrentUser();
             user.Name = profileViewModel.UserViewModel.Name;
 
-            _userRepository.EditUser(user);
+            _userRepository.Edit(user);
 
             return RedirectToAction("Profile");
         }

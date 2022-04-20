@@ -1,5 +1,6 @@
 ﻿@model WordViewModel
 @using TestProjectWeb.Data.Enums
+@inject TestProjectWeb.Services.UserService _userService
 
 <div class="parent-for-all-fields">
     <div class="fields">
@@ -27,11 +28,11 @@
             </div>
             <div>
                 <div>
-                    <label asp-for="Category"></label>
+                    <label for="user-categories-choice" asp-for="Category"></label>
                     <span asp-validation-for="Category"></span>
                 </div>
                 <div>
-                    <input type="text" asp-for="Category" />
+                    <input list="user-categories" id="user-categories-choice" type="text" asp-for="Category" />
                 </div>
             </div>
             <div>
@@ -50,3 +51,10 @@
         <a asp-area="" asp-controller="Profile" asp-action="Profile">Back</a>
     </div>
 </div>
+
+<datalist id="user-categories">
+    @foreach (var category in _userService.GetAllUserCategories())
+    {
+        <option value="@category">@category</option>
+    }
+</datalist>

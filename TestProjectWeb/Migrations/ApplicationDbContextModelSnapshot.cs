@@ -44,7 +44,7 @@ namespace TestProjectWeb.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Questions", (string)null);
                 });
 
             modelBuilder.Entity("TestProjectWeb.Data.DbModels.Quiz", b =>
@@ -66,7 +66,7 @@ namespace TestProjectWeb.Migrations
 
                     b.HasIndex("CreaterId");
 
-                    b.ToTable("Quizzes");
+                    b.ToTable("Quizzes", (string)null);
                 });
 
             modelBuilder.Entity("TestProjectWeb.Data.DbModels.User", b =>
@@ -106,7 +106,7 @@ namespace TestProjectWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("TestProjectWeb.Data.DbModels.Variant", b =>
@@ -128,7 +128,7 @@ namespace TestProjectWeb.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("Variants");
+                    b.ToTable("Variants", (string)null);
                 });
 
             modelBuilder.Entity("TestProjectWeb.Data.DbModels.Word", b =>
@@ -161,7 +161,7 @@ namespace TestProjectWeb.Migrations
 
                     b.HasIndex("CreaterId");
 
-                    b.ToTable("Words");
+                    b.ToTable("Words", (string)null);
                 });
 
             modelBuilder.Entity("TestProjectWeb.Data.DbModels.Question", b =>
